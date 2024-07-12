@@ -15,7 +15,7 @@ public class CourseGrades {
         String msg = "";
 
         for (int i = 0; i < products.size(); i++) {
-            msg += "\n"+(i+1)+products.get(i).text()+" ------------- "+products.get(i).number();
+            msg += "\n"+(i+1)+": "+products.get(i).text()+" ------------- "+products.get(i).number();
         }
 
         String purchase;
@@ -40,15 +40,24 @@ public class CourseGrades {
         msg = "\n";
 
         for (Integer i : castArray) {
-            while (true) {
-                try {
-                    quantity = Integer.parseInt(JOptionPane.showInputDialog("Insert the quantity of "+products.get(i).text()+" you want to buy"));
-                    msg += products.get(i).text()+" * " + quantity + " ---------- " + (products.get(i).number()*quantity) + "\n";
-                    total += products.get(i).number()*quantity;
-                    break;
-                } catch (HeadlessException | NumberFormatException e) {
-                    JOptionPane.showMessageDialog(null, "Inserted values are not valid!");
+            try {
+                if( 1 > i || i > 4 ) {
+                    throw new Error();
                 }
+                while (true) {
+                    try {
+                        quantity = Integer.parseInt(JOptionPane.showInputDialog("Insert the quantity of "+products.get(i).text()+" you want to buy"));
+                        msg += products.get(i).text()+" * " + quantity + " ---------- " + (products.get(i).number()*quantity) + "\n";
+                        total += products.get(i).number()*quantity;
+                        break;
+                    } catch (HeadlessException | NumberFormatException e) {
+                        JOptionPane.showMessageDialog(null, "Inserted values are not valid!");
+                    }
+                }
+                
+            } catch (Error e) {
+                JOptionPane.showMessageDialog(null, "Inserted values are not valid!");
+                System.exit(total);
             }
         }
 

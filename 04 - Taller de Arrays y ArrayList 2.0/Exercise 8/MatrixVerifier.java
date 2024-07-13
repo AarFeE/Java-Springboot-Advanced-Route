@@ -23,11 +23,9 @@ public class MatrixVerifier {
         }
 
         int i = 0;
-        System.out.println(Arrays.toString(castValues));
         
         for (int j = 0; j < ogMatrix.length; j++) {
             for (int h = 0; h < ogMatrix[j].length; h++) {
-                System.out.println(castValues[i]);
                 ogMatrix[j][h] = castValues[i];
                 transMatrix[h][j] = castValues[i];
                 i++;
@@ -35,10 +33,6 @@ public class MatrixVerifier {
         }
 
         JOptionPane.showMessageDialog(null, "The inserted matrix: \n\n" + Arrays.deepToString(ogMatrix) + "\n\nTranspositioned:\n\n" + Arrays.deepToString(transMatrix) + (Arrays.deepToString(ogMatrix).equals(Arrays.deepToString(transMatrix))?"\n\nThe Matrix is Symmetrical":"\n\nThe Matrix isn't Symmetrical"));
-
-        System.out.println(Arrays.deepToString(ogMatrix));
-        System.out.println(Arrays.deepToString(transMatrix));
-        System.out.println(Arrays.deepToString(ogMatrix).equals(Arrays.deepToString(transMatrix)));
 
     }
 }

@@ -18,7 +18,7 @@ public class CourseGrades {
             }
             while (true) {
                 try {
-                    grade = Double.valueOf(JOptionPane.showInputDialog("Insert the "+(i)+" grade"));
+                    grade = Double.parseDouble(JOptionPane.showInputDialog("Insert the "+(i)+" grade"));
                     if (0 > grade || grade > 100) {
                         throw new Error();
                     }

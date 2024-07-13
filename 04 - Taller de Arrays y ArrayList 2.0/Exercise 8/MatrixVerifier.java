@@ -1,5 +1,4 @@
 import java.util.Arrays;
-
 import javax.swing.JOptionPane;
 
 public class MatrixVerifier {
@@ -16,7 +15,7 @@ public class MatrixVerifier {
                 throw new Error();
             }
             for(int i = 0; i < valuesArr.length; i++) {
-                castValues[i] = Integer.valueOf(valuesArr[i]);
+                castValues[i] = Integer.parseInt(valuesArr[i]);
             }
         } catch (Error | Exception e) {
             JOptionPane.showMessageDialog(null, "The inserted values are not valid");

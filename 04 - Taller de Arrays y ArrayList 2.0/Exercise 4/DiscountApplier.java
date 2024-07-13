@@ -2,7 +2,7 @@ import javax.swing.JOptionPane;
 
 public class DiscountApplier {
     public static void main(String[] args) {
-        double purchase = Double.valueOf(JOptionPane.showInputDialog("Insert the purchase total cost"));
+        double purchase = Double.parseDouble(JOptionPane.showInputDialog("Insert the purchase total cost"));
         double finalCost = 0;
 
         if (200 <= purchase && purchase < 300) {

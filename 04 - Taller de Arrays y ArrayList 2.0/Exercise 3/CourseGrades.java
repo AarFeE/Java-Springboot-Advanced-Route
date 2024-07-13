@@ -1,67 +1,41 @@
+
 import java.awt.HeadlessException;
-import java.util.ArrayList;
-import java.util.List;
 import javax.swing.JOptionPane;
 
 public class CourseGrades {
-    public static void main (String[] args) {
-        List<NumberStringPair> products = new ArrayList<>();
-
-        products.add(new NumberStringPair("Sugar 1kg", 14900));
-        products.add(new NumberStringPair("Coffee 100gr", 7490));
-        products.add(new NumberStringPair("Canned beans", 6900));
-        products.add(new NumberStringPair("Ground beef 1kg", 22900));
-
+    public static void main(String[] args) {
+        Double[] grades = new Double[8];
+        double grade;
         String msg = "";
+        int flag, cont = 0, accum = 0;
 
-        for (int i = 0; i < products.size(); i++) {
-            msg += "\n"+(i+1)+": "+products.get(i).text()+" ------------- "+products.get(i).number();
-        }
-
-        String purchase;
-        String[] purchaseArray;
-        Integer[] castArray;
-
-        while (true) {
-            purchase = JOptionPane.showInputDialog("Insert the number of the products you want to add, separated by ','\n"+msg);
-            try {
-                purchaseArray = purchase.split(",");
-                castArray = new Integer[purchaseArray.length];
-                for (int i = 0; i < purchaseArray.length; i++) {
-                    castArray[i] = Integer.valueOf(purchaseArray[i]);
-                }
+        for (int i = 0; i < grades.length; i++) {
+            flag = JOptionPane.showConfirmDialog(null, "Do you want to add another grade?");
+            if (flag == 1) {
                 break;
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(null, "Inserted values are not valid!");
+            } else if (flag == 2) {
+                System.exit(0);
             }
-        }
-
-        int quantity, total = 0;
-        msg = "\n";
-
-        for (Integer i : castArray) {
-            try {
-                if( 1 > i || i > 4 ) {
-                    throw new Error();
-                }
-                while (true) {
-                    try {
-                        quantity = Integer.parseInt(JOptionPane.showInputDialog("Insert the quantity of "+products.get(i).text()+" you want to buy"));
-                        msg += products.get(i).text()+" * " + quantity + " ---------- " + (products.get(i).number()*quantity) + "\n";
-                        total += products.get(i).number()*quantity;
-                        break;
-                    } catch (HeadlessException | NumberFormatException e) {
-                        JOptionPane.showMessageDialog(null, "Inserted values are not valid!");
+            while (true) {
+                try {
+                    grade = Double.valueOf(JOptionPane.showInputDialog("Insert the "+(i)+" grade"));
+                    if (0 > grade || grade > 100) {
+                        throw new Error();
                     }
+                    msg += grade+", ";
+                    accum += grade;
+                    cont ++;
+                    grades[i] = grade;
+                    break;
+                } catch (HeadlessException | NumberFormatException | Error e) {
+                    JOptionPane.showMessageDialog(null, "Not a Valid Option!");
                 }
-                
-            } catch (Error e) {
-                JOptionPane.showMessageDialog(null, "Inserted values are not valid!");
-                System.exit(total);
             }
         }
 
-        JOptionPane.showMessageDialog(null, "Your Purchases:\n"+msg+"\nTotal: "+total);
-
+        JOptionPane.showMessageDialog(null, "Inserted Grades: " + msg);
+        double rawNeeded = 608-accum;
+        double needed = rawNeeded/(8-cont);
+        JOptionPane.showMessageDialog(null, (needed < 100)?("The needed grade for the next exams to pass this course is: "+needed):"There's no chance, u are danzo my boi", "Needed Grade", 1);
     }
 }

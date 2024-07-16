@@ -28,7 +28,8 @@ public class StoreBilling {
                 purchaseArray = purchase.split(",");
                 castArray = new Integer[purchaseArray.length];
                 for (int i = 0; i < purchaseArray.length; i++) {
-                    castArray[i] = Integer.valueOf(purchaseArray[i]);
+                    System.out.println(Integer.valueOf(purchaseArray[i]) -1);
+                    castArray[i] = (Integer.parseInt(purchaseArray[i]) - 1);
                 }
                 break;
             } catch (NumberFormatException e) {
@@ -41,7 +42,7 @@ public class StoreBilling {
 
         for (Integer i : castArray) {
             try {
-                if( 1 > i || i > 4 ) {
+                if( 0 > i || i > 3 ) {
                     throw new Error();
                 }
                 while (true) {

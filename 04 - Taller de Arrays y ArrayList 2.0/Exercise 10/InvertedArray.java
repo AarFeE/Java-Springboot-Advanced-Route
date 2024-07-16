@@ -4,7 +4,7 @@ import javax.swing.JOptionPane;
 
 public class InvertedArray {
     public static void main(String[] args) {
-        String input = JOptionPane.showInputDialog("Insert an string to turn into an array separated by comas ','");
+        String input = JOptionPane.showInputDialog("Insert a string to turn into an array separated by comas ','");
         String[] inputArr = input.split(",");
         String[] invertedArr = new String[inputArr.length];
 

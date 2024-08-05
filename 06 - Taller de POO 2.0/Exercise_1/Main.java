@@ -1,5 +1,3 @@
-
-
 public class Main {
     public static void main(String[] args) {
         SpecificProduct a = new SpecificProduct("0", "Colgate Total White", 1.0, "higiene", "Colgate");

@@ -13,6 +13,7 @@ public class SpecificProduct extends Product {
         return category;
     }
 
+    @Override
     public void setCategory(String category) {
         this.category = category;
     }
